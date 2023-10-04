@@ -7,8 +7,8 @@ import { conn } from "@/app/db.js";
  */
 export const GET = async (req, params, res) => {
   try {
-    const query = `SELECT product_id, price, product_name 
-                    FROM pos.product`;
+    const query = `SELECT p.product_id, p.price, p.product_name 
+                    FROM pos.product p`;
     const response = await conn.query(query);
 
     return Response.json(response.rows);
