@@ -109,6 +109,9 @@ const POSGrid = () => {
 
   const handleSubmit = () => {
     const inputs = rowData.filter((row) => row.status === "New"); // e.g. [{product: 'Apple', quantity: 20}, {product: 'Pineapple', quantity 1}]
+    
+    if (inputs.length === 0) return; // Validation for no orders
+    
     const consolidateOrders = inputs.reduce((accumulator, currentValue) => {
       const existingProduct = accumulator.find(item => item.product === currentValue.product);
     
