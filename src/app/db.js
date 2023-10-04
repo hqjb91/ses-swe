@@ -8,7 +8,7 @@ if (!conn) {
     password: process.env.REACT_APP_DB_PASSWORD,
     host: process.env.REACT_APP_DB_HOST,
     port: 5432,
-    database: "ses-swe",
+    database: REACT_APP_DATABASE,
   });
 }
 
