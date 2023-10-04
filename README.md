@@ -1,5 +1,9 @@
 This is a simple point of sales application for a technical interview assignment.
 
+## Deployed Demo
+
+Test application is deployed at : https://ses-swe.vercel.app/
+
 ## Getting Started
 
 First, run the development server:
