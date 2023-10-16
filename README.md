@@ -23,7 +23,7 @@ bun dev
 ```
 CREATE SCHEMA IF NOT EXISTS pos
     AUTHORIZATION postgres;
-	
+
 CREATE SEQUENCE IF NOT EXISTS pos.order_id_seq
     INCREMENT 1
     START 1
@@ -33,7 +33,7 @@ CREATE SEQUENCE IF NOT EXISTS pos.order_id_seq
 
 ALTER SEQUENCE pos.order_id_seq
     OWNER TO postgres;
-	
+
 CREATE SEQUENCE IF NOT EXISTS pos.product_id_seq
     INCREMENT 1
     START 1
@@ -43,7 +43,20 @@ CREATE SEQUENCE IF NOT EXISTS pos.product_id_seq
 
 ALTER SEQUENCE pos.product_id_seq
     OWNER TO postgres;
-	
+
+CREATE TABLE IF NOT EXISTS pos.product
+(
+    product_id integer NOT NULL DEFAULT nextval('pos.product_id_seq'::regclass),
+    price integer NOT NULL,
+    product_name character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT product_pkey PRIMARY KEY (product_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS pos.product
+    OWNER to postgres;
+
 CREATE TABLE IF NOT EXISTS pos."order"
 (
     order_id integer NOT NULL DEFAULT nextval('pos.order_id_seq'::regclass),
@@ -59,18 +72,5 @@ CREATE TABLE IF NOT EXISTS pos."order"
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS pos."order"
-    OWNER to postgres;
-	
-CREATE TABLE IF NOT EXISTS pos.product
-(
-    product_id integer NOT NULL DEFAULT nextval('pos.product_id_seq'::regclass),
-    price integer NOT NULL,
-    product_name character varying COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT product_pkey PRIMARY KEY (product_id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS pos.product
     OWNER to postgres;
 ```

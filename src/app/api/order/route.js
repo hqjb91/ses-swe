@@ -35,8 +35,8 @@ export const POST = async (req, params, res) => {
       await conn.query(query, [requestBody[input]['product'], requestBody[input]['quantity']]);
     }
 
-    return Response.json({ success: true });
+    return Response.json({ success: true }, { status: 200 });
   } catch (error) {
-    return Response.json({ message: error.message });
+    return Response.json({ message: error.message }, { status: 400 });
   }
 }
